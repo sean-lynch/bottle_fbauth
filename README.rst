@@ -42,7 +42,8 @@ get user information. Alternatively, you can specify a user_resolver method
 during set which will be called to create a user object of your choice.
 
 Example installation:
-    
+::
+
     import bottle
     import bottle_fbauth
 

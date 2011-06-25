@@ -1,14 +1,14 @@
 =====================
-Bottle-FBAuth
+bottle_fbauth
 =====================
 
 This plugin simplifies the use of Facebook authentication in your Bottle 
-applications. Once installed, it will checked for a logged in Facebook user
+applications. Once installed, it will check for a logged in Facebook user
 cookie and pass it to a bottle app's @routes if they have a ``fb_user`` 
-keyword argument(configurable).
+keyword argument (configurable).
 
 You will also need to download the Facebook Python SDK and include facebook.py
-in your sys.path for this plugin to work. You can download it here: 
+in your sys.path for to use this plugin. You can download it here: 
      
     http://github.com/facebook/python-sdk
         
@@ -16,21 +16,14 @@ For more information on how to use the cookie to retrieve information from
 the Facebook GraphAPI, see the Python SDK's examples:
 
     https://github.com/facebook/python-sdk/tree/master/examples/appengine
-   
-    
+
+
 Installation
 ===============
 
-Install with one of the following commands::
+Download the latest version from github::
 
-    $ pip install bottle-fbauth
-    $ easy_install bottle-fbauth
-
-or download the latest version from github::
-
-    $ git clone git://github.com/defnull/bottle.git
-    $ cd bottle/plugins/fbauth
-    $ python setup.py install (or copy bottle_fbauth.py into your project)
+    $ git clone git://github.com/Hactile/bottle_fbauth
     
 Usage
 ===============
@@ -51,12 +44,13 @@ during set which will be called to create a user object of your choice.
 Example installation:
     
     import bottle
+    import bottle_fbauth
 
     FACEBOOK_APP_ID     = "..."
     FACEBOOK_APP_SECRET = "..."
 
     app = bottle.Bottle()
-    plugin = bottle.plugins.fbauth.FBAuthPlugin(FACEBOOK_APP_ID, FACEBOOK_APP_SECRET)
+    plugin = bottle_fbauth.FBAuthPlugin(FACEBOOK_APP_ID, FACEBOOK_APP_SECRET)
     app.install(plugin)
 
     @bottle.route('/home')
@@ -70,7 +64,7 @@ Configuration
 
 The following configuration options exist for the plugin class:
 
-* **fb_app_id**: The App ID provided by Facebook for your application.
+* **fb_app_id**: The App ID provided by Facebook for your application [required].
 * **fb_app_secret**: The App Secret provided by Facebook for your application.
 * **user_resolver**: A callback which is used to resolve the FB cookie into a
     user object of your choosing. If None is specified, the cookie is returned

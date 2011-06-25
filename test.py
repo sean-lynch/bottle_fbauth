@@ -1,14 +1,17 @@
 import unittest
 import os
 import bottle
-from bottle.ext import fbauth
+import bottle_fbauth
+
+FACEBOOK_APP_ID     = "<Provided FB App ID>"
+FACEBOOK_APP_SECRET = "<Provided FB App Secret>"
 
 class FBAuthTest(unittest.TestCase):
     def setUp(self):
         self.app = bottle.Bottle(catchall=False)
 
     def test_with_keyword(self):
-        self.plugin = self.app.install(fbauth.Plugin())
+        self.plugin = self.app.install(bottle_fbauth.FBAuthPlugin(FACEBOOK_APP_ID, FACEBOOK_APP_SECRET))
 
         @self.app.get('/')
         def test(fb_user):
@@ -16,7 +19,7 @@ class FBAuthTest(unittest.TestCase):
         self.app({'PATH_INFO':'/', 'REQUEST_METHOD':'GET'}, lambda x, y: None)
 
     def test_without_keyword(self):
-        self.plugin = self.app.install(fbauth.Plugin())
+        self.plugin = self.app.install(bottle_fbauth.FBAuthPlugin(FACEBOOK_APP_ID, FACEBOOK_APP_SECRET))
 
         @self.app.get('/')
         def test():

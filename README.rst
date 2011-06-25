@@ -41,9 +41,7 @@ abort(401, ...). The cookie can be used in conjunction with the Facebook API to
 get user information. Alternatively, you can specify a user_resolver method 
 during set which will be called to create a user object of your choice.
 
-Example installation:
-::
-
+Example installation::
     import bottle
     import bottle_fbauth
 
@@ -65,15 +63,17 @@ Configuration
 
 The following configuration options exist for the plugin class:
 
-* **fb_app_id**: The App ID provided by Facebook for your application [required].
-* **fb_app_secret**: The App Secret provided by Facebook for your application.
+* **fb_app_id**: The App ID provided by Facebook for your application
+  (required).
+* **fb_app_secret**: The App Secret provided by Facebook for your application
+  (required).
 * **user_resolver**: A callback which is used to resolve the FB cookie into a
   user object of your choosing. If None is specified, the cookie is returned
   directly to the @route (default: None).
 * **fail_without_user**: If True, the plugin will call abort(401, ...) 
   automatically if no user is logged in (default: False)
 * **user_override**: For testing purposes, you can provide a fixed user object
-  to return instead of doing authentication (default is None)
+  to return instead of doing authentication (default: None)
 * **keyword**: The keyword argument name that triggers the plugin (default: 'fb_auth').
 
 You can override each of these values on a per-route basis:: 
@@ -81,5 +81,5 @@ You can override each of these values on a per-route basis::
     @bottle.route('/cache/:item', fbauth={'keyword': 'user'})
     def cache(item, user):
         ...
-   
+
 

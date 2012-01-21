@@ -2,15 +2,22 @@
 bottle_fbauth
 =====================
 
-This plugin simplifies the use of Facebook authentication in your Bottle 
-applications. Once installed, it will check for a logged in Facebook user
-cookie and pass it to a bottle app's @routes if they have a ``fb_user`` 
+This plugin simplifies the use of Facebook's JavaScript SDK authentication in
+Bottle applications. Once installed, it will check for a logged in Facebook
+user cookie and pass it to a bottle app's @routes if they have a ``fb_user`` 
 keyword argument (configurable).
 
 You will also need to download the Facebook Python SDK and include facebook.py
-in your sys.path for to use this plugin. You can download it here: 
+in your sys.path for to use this plugin. Facebook has abandoned their official
+Python SDK but there is a community supported fork that is up to date available
+for download here:
      
-    http://github.com/facebook/python-sdk
+    https://github.com/pythonforfacebook/facebook-sdk
+
+As mentioned, you'll use this in conjunction Facebook's JavaScript SDK which
+is available here:
+
+    https://github.com/facebook/facebook-js-sdk
         
 For more information on how to use the cookie to retrieve information from
 the Facebook GraphAPI, see the Python SDK's examples:
@@ -23,7 +30,7 @@ Installation
 
 Download the latest version from github::
 
-    $ git clone git://github.com/Hactile/bottle_fbauth
+    $ git clone git://github.com/sean-lynch/bottle_fbauth.git
     
 Usage
 ===============

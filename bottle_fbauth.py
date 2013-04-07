@@ -65,8 +65,8 @@ class FBAuthPlugin(object):
 
         # Test if the original callback accepts a 'user' keyword.
         # Ignore it if it does not need a logged in user.
-        args = inspect.getargspec(context.callback)[0]
-        if keyword not in args:
+        args = inspect.getargspec(context.callback)
+        if keyword not in args[0] and args[2] is None:
             return callback
 
         def wrapper(*args, **kwargs):

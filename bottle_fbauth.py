@@ -37,6 +37,7 @@ class FBAuthPlugin(object):
     '''
 
     name = 'fbauth'
+    api = 2
 
     def __init__(self, fb_app_id, fb_app_secret, user_resolver=None, 
                  fail_without_user=False, user_override=None,
@@ -59,12 +60,12 @@ class FBAuthPlugin(object):
 
     def apply(self, callback, context):
         # Override global configuration with route-specific values.
-        conf = context['config'].get('fbauth') or {}
+        conf = context.config.get('fbauth') or {}
         keyword = conf.get('keyword', self.keyword)
 
         # Test if the original callback accepts a 'user' keyword.
         # Ignore it if it does not need a logged in user.
-        args = inspect.getargspec(context['callback'])[0]
+        args = inspect.getargspec(context.callback)[0]
         if keyword not in args:
             return callback
 
@@ -74,7 +75,7 @@ class FBAuthPlugin(object):
             if self.user_override:
                 fb_user = self.user_override
             else:
-                fb_user = facebook.get_user_from_cookie(request.COOKIES, 
+                fb_user = facebook.get_user_from_cookie(request.cookies, 
                     self.app_id, self.app_secret)
             
                 # If developer has set a custom user resolver, use it 
